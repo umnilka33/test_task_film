@@ -1,7 +1,7 @@
-import Vue from 'vue'
+//import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex);
+//Vue.use(Vuex);
 
 let store = new Vuex.Store( {
     state: {},
@@ -11,3 +11,13 @@ let store = new Vuex.Store( {
 })
 
 export default store;
+
+/*import { createStore } from "vuex";
+export default createStore({
+    state: {
+    },
+    mutations: {
+    },
+    actions: {
+    }
+})*/

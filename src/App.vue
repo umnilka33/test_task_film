@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <p>Hello Vue haha</p>
-    <p>Lom com top</p>
     <f-main-wrapper/>
   </div>
 </template>

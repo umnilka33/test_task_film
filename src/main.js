@@ -1,10 +1,10 @@
-import Vue from 'vue'
-//import {createApp} from 'vue'
+//import Vue from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import store from './vuex/store'
 import './assets/styles/styles.scss'
 
-Vue.config.productionTip = false;
+//Vue.config.productionTip = false;
 
 //createApp(App).mount('#app')
 /*const app = createApp({
@@ -12,9 +12,17 @@ Vue.config.productionTip = false;
 })
 app.use(store)
 app.mount('#app')*/
-new Vue({
+/*new Vue({
     render: h => h(App),
     store
-}).$mount('#app')
+}).$mount('#app')*/
+/*const app = new Vue({
+    App,
+    store
+})
 
-//createApp({App, store}).mount('#app')
+app.mount('#app')*/
+
+const app = createApp(App)
+app.use(store)
+app.mount('#app')
