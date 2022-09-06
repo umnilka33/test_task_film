@@ -4,11 +4,12 @@
     @click="openFilmInfo"
     >
         <img src="" alt="img" class="f-list-item__image">
-        <p class="f-list-item__name">{{film_data.name}}</p>
+        <p class="f-list-item__title">{{film_data.title}}</p>
         <p class="f-list-item__year">Год: {{film_data.year}}</p>
-        <p class="f-list-item__genre">Жанр: {{film_data.genre}}</p>
-        <p class="f-list-item__producer">Режиссер: {{film_data.producer}}</p>
+        <p class="f-list-item__genre">Жанр: {{film_data.genres}}</p>
+        <p class="f-list-item__directors">Режиссеры: {{film_data.directors}}</p>
         <p class="f-list-item__actors">Актеры: {{film_data.actors}}</p>
+        <p class="f-list-item__description">Описание: {{film_data.description}}</p>
     </div>
 </template>
 

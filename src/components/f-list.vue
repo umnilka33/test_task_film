@@ -2,7 +2,7 @@
     <div class="f-list">
         <h1>list of films</h1>
         <f-list-item 
-            v-for="film in films"
+            v-for="film in this.$store.state.films"
             :key="film.id"
             :film_data="film"
             @openFilmByID="showWhatWeGetFromFilmItem"
@@ -12,6 +12,7 @@
 
 <script>
     import fListItem from './f-list-item'
+    import {mapActions} from 'vuex'
 
     export default {
         name: 'f-list',
@@ -21,41 +22,19 @@
         props: {},
         data(){
             return {
-                films: [
-                    {
-                        id: 0,
-                        name: "Один дома",
-                        image: "1.jpg",
-                        year: 2012,
-                        genre: "comedy",
-                        actors: "Tati Murelli, Moly Holy, Danny Warm",
-                        producer: "Enthony Veber"
-                    },
-                    {
-                        id: 1,
-                        name: "Два дома",
-                        image: "2.jpg",
-                        year: 2009,
-                        genre: "triller",
-                        actors: "Tati Murelli, Moly Holy, Danny Warm",
-                        producer: "Sandra Six"
-                    },
-                    {
-                        id: 2,
-                        name: "Святые из бундока",
-                        image: "3.jpg",
-                        year: 2001,
-                        genre: "horror",
-                        actors: "Tati Murelli, Moly Holy, Danny Warm",
-                        producer: "Anne GolenWagner"
-                    },
-                ]
+                
             }
         },
         methods: {
+            ...mapActions([
+                'GET_FILM_LIST_FROM_API'
+            ]),
             showWhatWeGetFromFilmItem(data) {
                 console.log(data)
             }
+        },
+        mounted(){
+            this.GET_FILM_LIST_FROM_API()
         }
     }
 </script>
