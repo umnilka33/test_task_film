@@ -1,6 +1,8 @@
 <template>
     <div class="f-main-wrapper">
-        <p>{{title}}</p>
+        <div class="f-main-wrapper__head">
+            <div>{{title}}</div>
+        </div>
         <f-filter />
         <f-list />
     </div>
@@ -19,7 +21,7 @@
         props: {},
         data() {
             return {
-                title: 'Main wrapper'
+                title: '#movienow'
             }
         },
         computed: {},
@@ -31,10 +33,36 @@
     }
 </script>
 
-<style>
+<style lang="scss">
+    body {
+        background-color: #363232;
+    }
     .f-main-wrapper {
-        max-width: 900px;
-        margin: 0 auto;
-        color: blue;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        &__head {
+            position: absolute;
+            width: 1920px;
+            height: 100px;
+            left: 0px;
+            top: 0px;
+            background: $bg-color-head;
+            box-shadow: $shadow-head;
+        }
+        &__head div {
+            position: absolute;
+            left: 777px;
+            top: 36px;
+            font-family: 'Roboto'; 
+            color: $color-head;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 48px;
+            text-align: center;
+            letter-spacing: 0.21em;
+            text-transform: uppercase;
+        }
     }
 </style>

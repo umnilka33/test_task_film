@@ -3,13 +3,19 @@
     class="f-list-item" 
     @click="openFilmInfo"
     >
-        <img src="" alt="img" class="f-list-item__image">
-        <p class="f-list-item__title">{{film_data.title}}</p>
-        <p class="f-list-item__year">Год: {{film_data.year}}</p>
-        <p class="f-list-item__genre">Жанр: {{film_data.genres}}</p>
-        <p class="f-list-item__directors">Режиссеры: {{film_data.directors}}</p>
-        <p class="f-list-item__actors">Актеры: {{film_data.actors}}</p>
-        <p class="f-list-item__description">Описание: {{film_data.description}}</p>
+        <div class="f-list-item__image">
+            <img src="" alt="img">
+        </div>
+        <div class="f-list-item-info">
+            <div class="f-list-item__title">{{film_data.title}}</div>
+            <div class="f-list-item__year_genre">{{film_data.year}}, {{film_data.genres.join(', ')}}</div>
+            <div class="f-list-item__directors">РЕЖИССЁР: {{film_data.directors==null?console.log('help'):film_data.directors.length>1?film_data.directors.join(', '):film_data.directors.length==1?film_data.directors[0]:''}}</div>
+            <div class="f-list-item__actors">
+                <div class="f-list-item__actors__text">АКТЁРЫ: </div>
+                <div class="f-list-item__actors__data">{{ film_data.actors.join(', ')}}</div>
+            </div>
+            <div class="f-list-item__description">{{film_data.description}}</div>
+        </div>
     </div>
 </template>
 
@@ -37,10 +43,74 @@
 </script>
 
 <style lang="scss">
-    .f-list-item {
-        flex-basis: 25%;
-        box-shadow: 0 0 8px 0 #e0e0e0;
-        //padding: $padding*2;
-        //margin-bottom: $margin*2;
+    .f-list-item__image{
+        max-width: 168px;
+        min-width: 168px;
+        background-color: $bg-color-poster;
     }
+    .f-list-item-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        text-align: start;
+        margin-left: 24px;
+        margin-top: 32px;
+        margin-right: 32px;
+    }
+    .f-list-item {
+        font-family: 'Roboto';
+        font-style: normal;
+        margin-top: $margin-btw-items;
+        &__title {
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 36px;
+            color: $color-name;
+        }
+        &__year_genre {
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 12px;
+            text-transform: uppercase;
+            color: $color-text;
+            margin-top: 12px;
+        }
+        &__directors {
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 12px;
+            text-transform: uppercase;
+            color: $color-text;
+            margin-top: 8px;
+        }
+        &__actors {
+            display: flex;
+            flex-direction: row;
+            &__text{
+                font-weight: 700;
+                font-size: 12px;
+                line-height: 12px;
+                text-transform: uppercase;
+                color: $color-text;
+                margin-top: 8px;
+            }
+            &__data {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 12px;
+                text-transform: none;
+                color: $color-text-actors;
+                margin-top: 8px;
+            }
+        }
+        &__description {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 20px;
+            color: white;
+            margin-top: 16px;
+            margin-bottom: 32px;
+        }
+    }
+
 </style>

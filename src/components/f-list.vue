@@ -1,8 +1,7 @@
 <template>
     <div class="f-list">
-        <h1>list of films</h1>
         <f-list-item 
-            v-for="film in this.$store.state.films"
+            v-for="film in FILMS"
             :key="film.id"
             :film_data="film"
             @openFilmByID="showWhatWeGetFromFilmItem"
@@ -12,7 +11,7 @@
 
 <script>
     import fListItem from './f-list-item'
-    import {mapActions} from 'vuex'
+    import {mapActions, mapGetters} from 'vuex'
 
     export default {
         name: 'f-list',
@@ -25,6 +24,11 @@
                 
             }
         },
+        computed: {
+            ...mapGetters([
+                'FILMS'
+            ]),
+        },
         methods: {
             ...mapActions([
                 'GET_FILM_LIST_FROM_API'
@@ -35,10 +39,25 @@
         },
         mounted(){
             this.GET_FILM_LIST_FROM_API()
+            .then((response) => {
+                if(response.data) {
+                    console.log('Data arrived!');
+                }
+            })
         }
     }
 </script>
 
-<style lang="sсss">
+<style lang="scss">
+    .f-list {
 
+        &-item {
+            background-color: $bg-color-item;
+            max-width: 1400px;
+            min-width: 1400px;
+            box-shadow: $shadow-item;
+            display: flex;
+            flex-direction: row;
+        }
+    }
 </style>
