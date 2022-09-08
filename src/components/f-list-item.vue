@@ -4,17 +4,18 @@
     @click="openFilmInfo"
     >
         <div class="f-list-item__image">
-            <img src="" alt="img">
+           <img :src='film_data.poster' alt="img">
         </div>
         <div class="f-list-item-info">
             <div class="f-list-item__title">{{film_data.title}}</div>
-            <div class="f-list-item__year_genre">{{film_data.year}}, {{film_data.genres.join(', ')}}</div>
-            <div class="f-list-item__directors">РЕЖИССЁР: {{film_data.directors==null?console.log('help'):film_data.directors.length>1?film_data.directors.join(', '):film_data.directors.length==1?film_data.directors[0]:''}}</div>
+            <div class="f-list-item__year_genre">{{film_data.year}}, {{ makeListByItem(film_data.genres)}}</div>
+            <div class="f-list-item__directors">РЕЖИССЁР: {{makeListByItem(film_data.directors)}}</div>
             <div class="f-list-item__actors">
-                <div class="f-list-item__actors__text">АКТЁРЫ: </div>
-                <div class="f-list-item__actors__data">{{ film_data.actors.join(', ')}}</div>
+                <div class="f-list-item__actors__text">АКТЁРЫ:</div>
+                <div class="f-list-item__actors__data">{{makeListByItem(film_data.actors)}}</div>
             </div>
-            <div class="f-list-item__description">{{film_data.description}}</div>
+            <div v-if="film_data.description!=null" class="f-list-item__description">{{film_data.description}}</div>
+            <div v-else class="f-list-item__nodescription"></div>
         </div>
     </div>
 </template>
@@ -37,6 +38,15 @@
         methods: {
             openFilmInfo() {
                 this.$emit('openFilmByID', this.film_data.id)
+            },
+            makeListByItem(data) {
+                if(data == null){
+                    return '';
+                }
+                else {
+                    let str = data.join(', ');
+                    return str;
+                }
             }
         }
     }
@@ -47,6 +57,14 @@
         max-width: 168px;
         min-width: 168px;
         background-color: $bg-color-poster;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    img {
+        height: 168px;
+        display: block;
+        margin: 0 auto;
     }
     .f-list-item-info {
         display: flex;
@@ -101,6 +119,7 @@
                 text-transform: none;
                 color: $color-text-actors;
                 margin-top: 8px;
+                margin-left: 10px;
             }
         }
         &__description {
@@ -109,6 +128,10 @@
             line-height: 20px;
             color: white;
             margin-top: 16px;
+            margin-bottom: 32px;
+        }
+        &__nodescription {
+            margin-top: 0px;
             margin-bottom: 32px;
         }
     }
