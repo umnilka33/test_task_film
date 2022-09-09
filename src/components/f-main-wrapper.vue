@@ -3,22 +3,24 @@
         <div class="f-main-wrapper__head">
             <div>{{title}}</div>
         </div>
-        <div class="scroll-field">
-            <f-filter />
-            <f-list />
-        </div>
+        <router-view></router-view>
+            <!-- <div class="scroll-field">
+                <f-filter />
+                <f-list />
+            </div> -->
+        
     </div>
 </template>
 
 <script>
-    import fFilter from './f-filter'
-    import fList from './f-list'
+    // import fFilter from './f-filter'
+    // import fList from './f-list'
     
     export default {
         name: 'f-main-wrapper',
         components: {
-            fFilter,
-            fList
+            // fFilter,
+            // fList
         },
         props: {},
         data() {

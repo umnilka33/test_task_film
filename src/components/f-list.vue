@@ -53,7 +53,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        
         &-item {
             background-color: $bg-color-item;
             max-width: 1400px;

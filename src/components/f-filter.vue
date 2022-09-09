@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
     export default {
         name: 'f-filter',
         components: {},
@@ -29,17 +30,28 @@
             return {};
         },
         methods: {
+            ...mapActions([
+                'SORT_FILMS_BY_NAME',
+                'SORT_FILMS_BY_YEAR',
+                'GET_FILM_LIST_FROM_API'
+            ]),
             sortFilmsByName() {
-                //сортим по имени
-                //this.$emit('sortFilmsByName', this)
-                
-                //выключаем year chekbox
-                document.getElementById('sortByYear').checked = false;
+                if(document.getElementById('sortByName').checked){
+                    this.SORT_FILMS_BY_NAME(this.$store.state);
+                    document.getElementById('sortByYear').checked = false;
+                }
+                else{
+                    this.GET_FILM_LIST_FROM_API();
+                }
             },
             sortFilmsByYear() {
-                //сортим по году
-                //выключаем name chekbox
-                document.getElementById('sortByName').checked = false;
+                if(document.getElementById('sortByYear').checked){
+                    this.SORT_FILMS_BY_YEAR(this.$store.state);
+                    document.getElementById('sortByName').checked = false;
+                }
+                else {
+                    this.GET_FILM_LIST_FROM_API();
+                }
             }
         }
     }

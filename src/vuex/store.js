@@ -15,11 +15,11 @@ let store = new Vuex.Store( {
     },
     actions: {
         GET_FILM_LIST_FROM_API({commit}){
+
             return axios('http://localhost:3000/films', {
                 method: "GET"
             })
             .then((filmList)=> {
-                console.log(filmList)
                 commit('SET_FILMS_TO_STATE', filmList.data);
                 return filmList;
             })
@@ -27,6 +27,23 @@ let store = new Vuex.Store( {
                 console.log(error);
                 return error;
             })
+        },
+        SORT_FILMS_BY_NAME({commit}, data) {
+            let sortedFilms = data.films.sort(function(a, b){
+                var nameA = a.title.toLowerCase(), nameB=b.title.toLowerCase()
+                if (nameA < nameB) 
+                    return -1 
+                if (nameA > nameB)
+                    return 1
+                return 0 
+            })
+            commit('SET_FILMS_TO_STATE', sortedFilms);
+        },
+        SORT_FILMS_BY_YEAR({commit}, data) {
+            let sortedFilms = data.films.sort(function(a, b){
+                return a.year-b.year
+            })
+            commit('SET_FILMS_TO_STATE', sortedFilms);
         }
     },
     getters: {
@@ -35,6 +52,17 @@ let store = new Vuex.Store( {
         }
     }
 })
+
+/*function preloader(isStart) {
+    if(isStart){
+        //выключаем отображение списка
+        //включаем отображение прелоадера
+    }
+    else{
+        //вылючаем отображение прелоадера
+        //включаем отображение списка
+    }
+}*/
 
 export default store;
 
