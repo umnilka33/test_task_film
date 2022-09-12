@@ -1,11 +1,14 @@
 <template>
     <div class="f-list">
-        <f-list-item 
-            v-for="film in FILMS"
-            :key="film.id"
-            :film_data="film"
-            @openFilmByID="showWhatWeGetFromFilmItem"
-        />
+        <!-- <router-link
+        :to="{name: 'film', params: { id: 123 }}"> -->
+            <f-list-item 
+                v-for="film in FILMS"
+                :key="film.id"
+                :film_data="film"
+                @openFilmByID="showWhatWeGetFromFilmItem"
+            />
+        <!-- </router-link> -->
     </div>
 </template>
 
@@ -20,9 +23,7 @@
         },
         props: {},
         data(){
-            return {
-                
-            }
+            return {}
         },
         computed: {
             ...mapGetters([

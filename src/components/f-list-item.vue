@@ -1,7 +1,9 @@
 <template>
+<router-link
+        :to="{name: 'film', params: { id: film_data.id }}">
     <div 
     class="f-list-item" 
-    @click="openFilmInfo"
+    @click="setCurrentFilmInfoInState"
     >
         <div class="f-list-item__image">
            <img :src='film_data.poster' alt="img">
@@ -18,9 +20,11 @@
             <div v-else class="f-list-item__nodescription"></div>
         </div>
     </div>
+    </router-link>
 </template>
 
 <script>
+    import { mapActions } from 'vuex';
     export default {
         name: 'f-list-item',
         components: {},
@@ -36,8 +40,11 @@
             return {}
         },
         methods: {
-            openFilmInfo() {
-                this.$emit('openFilmByID', this.film_data.id)
+            ...mapActions([
+                'GET_FILM_BY_ID_FROM_API'
+            ]),
+            setCurrentFilmInfoInState() {
+                this.GET_FILM_BY_ID_FROM_API(this.film_data.id)
             },
             makeListByItem(data) {
                 if(data == null){
