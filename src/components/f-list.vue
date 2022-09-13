@@ -1,25 +1,25 @@
 <template>
     <div class="f-list">
-        <!-- <router-link
-        :to="{name: 'film', params: { id: 123 }}"> -->
-            <f-list-item 
-                v-for="film in FILMS"
-                :key="film.id"
-                :film_data="film"
-                @openFilmByID="showWhatWeGetFromFilmItem"
-            />
-        <!-- </router-link> -->
+        <f-preloader />
+        <f-list-item 
+            v-for="film in FILMS"
+            :key="film.id"
+            :film_data="film"
+            @openFilmByID="showWhatWeGetFromFilmItem"
+        />
     </div>
 </template>
 
 <script>
     import fListItem from './f-list-item'
+    import FPreloader from './f-preloader'
     import {mapActions, mapGetters} from 'vuex'
 
     export default {
         name: 'f-list',
         components: {
-            fListItem
+            fListItem,
+            FPreloader
         },
         props: {},
         data(){

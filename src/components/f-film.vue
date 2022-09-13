@@ -11,11 +11,11 @@
         </router-link>
         <hr>
         <div 
-            v-if="!CURRENT_FILM.id"
+            v-if="!CURRENT_FILM.id&&!this.$store.state.loader"
             class="not-found-text">
             К сожалению, по вашему запросу ничего не найдено...
         </div>
-        <div v-else class="f-list-item">
+        <div v-else-if="!this.$store.state.loader" class="f-list-item">
             <div class="f-list-item__image">
                 <img :src='CURRENT_FILM.poster' alt="img">
             </div>
@@ -36,12 +36,9 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-    //import fListItem from './f-list-item'
     export default {
         name: 'f-film',
-        components: {
-            //fListItem
-        },
+        components: {},
         props: {
             film_data: {
                 type: Object,
@@ -74,11 +71,11 @@ import { mapActions, mapGetters } from 'vuex'
         },
         mounted() {
             if (!this.$store.state.current_film.id) {
-                console.log('информации о фильме нет, запрашиваю из апи')
+                console.log('information about movie: NO; go API')
                 this.GET_FILM_BY_ID_FROM_API(this.$router.currentRoute.value.params.id);
             }
             else{
-                console.log('у меня уже есть информация об этом фильме')
+                console.log('information about movie: YES; go store')
             }
         }
     }
@@ -131,5 +128,10 @@ import { mapActions, mapGetters } from 'vuex'
         font-size: 32px;
         line-height: 32px;
         color: white;
+    }
+    .f-film .f-list-item:hover {
+        -webkit-transform: none;
+        transform: none;
+        box-shadow: $shadow-item;
     }
 </style>

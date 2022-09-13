@@ -3,10 +3,18 @@
         :to="{name: 'film', params: { id: film_data.id }}">
     <div 
     class="f-list-item" 
+    v-if="!this.$store.state.loader"
     @click="setCurrentFilmInfoInState"
     >
         <div class="f-list-item__image">
            <img :src='film_data.poster' alt="img">
+        </div>
+        <div v-if="film_data.collapse.duration!=null" class="f-list-item__duration">
+            <img class="rectangle-img" src="../assets/time_mark/rectangle.svg">
+            <div class="f-list-item__time">
+                {{film_data.collapse.duration[0]}}
+            </div>
+            <img class="cine-film-img" src="../assets/time_mark/cine-film.svg">
         </div>
         <div class="f-list-item-info">
             <div class="f-list-item__title">{{film_data.title}}</div>
@@ -68,10 +76,35 @@
         justify-content: center;
         align-items: center;
     }
-    img {
+    .f-list-item__image img {
         height: 168px;
         display: block;
         margin: 0 auto;
+    }
+    .f-list-item__duration {
+        position: absolute;
+        right: 0px;
+        top: 32px;
+    }
+    .cine-film-img {
+        position: absolute;
+        right: 28px;
+        top: 6px;
+    }
+    .f-list-item__time {
+        position: absolute;
+        right: 56px;
+        top: 9px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 12px;
+        /* identical to box height, or 100% */
+
+        text-align: right;
+        text-transform: uppercase;
+        color: black;
     }
     .f-list-item-info {
         display: flex;
@@ -83,6 +116,7 @@
         margin-right: 32px;
     }
     .f-list-item {
+        position: relative;
         font-family: 'Roboto';
         font-style: normal;
         margin-top: $margin-btw-items;
