@@ -1,3 +1,5 @@
+![image](https://github.com/umnilka33/test_task_film/blob/master/src/assets/gif/filmer.gif)
+
 # filmer
 
 ## Project setup
