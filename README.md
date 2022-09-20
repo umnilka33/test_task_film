@@ -1,4 +1,4 @@
-![image](https://github.com/umnilka33/test_task_film/blob/master/src/assets/gif/filmer.gif)
+![image](https://github.com/umnilka33/test_task_film/blob/master/src/assets/gif/fil.gif)
 
 # filmer
 
